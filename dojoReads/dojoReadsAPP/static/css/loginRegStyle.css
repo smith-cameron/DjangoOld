@@ -1,0 +1,36 @@
+#wrapper{
+    width: auto;
+    height: 500px;
+    margin: 0px auto;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: rgb(27,68,34);
+    background: linear-gradient(0deg, rgba(27,68,34,1) 0%, rgba(24,149,27,1) 100%);
+    padding-top: 125px;
+}
+.form{
+    width: auto;
+    display: inline-block;
+    margin: 0px 9%;
+    vertical-align: top;
+    text-align: center;
+}
+.headFG{
+    margin-bottom: 0px;
+    text-decoration: underline;
+}
+.headBG{
+    color: #1b4422;
+    margin: 0px;
+}
+.messages{
+    color: red;
+}
+.submit{
+    padding: 3px 6px;
+    border-radius: 8px;
+}
+#divider{
+    display: inline-block;
+    font-weight: bolder;
+    margin-top: 160px;
+}
