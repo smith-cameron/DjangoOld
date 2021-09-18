@@ -5,6 +5,7 @@ import bcrypt
 
 def root(request):
     return render(request, 'loginReg.html')
+    # You could also reroute here to another views method
 
 def register(request):
     if request.method == 'POST':
