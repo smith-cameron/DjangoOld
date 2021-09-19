@@ -1,0 +1,8 @@
+#wrapper{
+    width: 1000px;
+    height: fit-content;
+    outline-style: dashed;
+    outline-width: 1px;
+    outline-color: red;
+    margin: 0px auto;
+}

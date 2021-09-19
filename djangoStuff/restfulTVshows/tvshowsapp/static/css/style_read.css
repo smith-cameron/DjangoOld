@@ -1,0 +1,40 @@
+#wrapper{
+    width: 1000px;
+    height: fit-content;
+    margin: 0px auto;
+    font-family: Arial, Helvetica, sans-serif;
+    background: rgb(52,86,129);
+    background: linear-gradient(0deg, rgba(52,86,129,1) 0%, rgba(85,137,196,1) 100%);
+    padding-bottom: 25px;
+}
+h1{
+    display: inline-block;
+    margin: 25px 0px 20px 404.297px;
+}
+#templatelink{
+    display: inline-block;
+    color: aliceblue;
+    margin: 20px 0px 0px 250px;
+    vertical-align: top;
+    font-size: large;
+}
+#showdisplay{
+    width: 500px;
+    margin: 0px auto;
+    font-size: large;
+}
+#descriptiondisplay{
+    height: 75px;
+    overflow-y: scroll;
+}
+#footer{
+    margin: 0px auto;
+    font-size: large;
+    display: inline-block;
+    vertical-align: bottom;
+    margin: 50px 0px 0px 250px;
+}
+#templatelink2{
+    display: inline-block;
+    color: aliceblue;
+}

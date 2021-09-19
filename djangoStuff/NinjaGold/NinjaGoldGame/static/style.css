@@ -1,0 +1,31 @@
+#wrapper{
+    width: 1000px;
+    height: fit-content;
+    margin: 0px auto;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+form{
+    text-align: center;
+    display: inline-block;
+    margin: 35px;
+    padding: 10px;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 10px;
+}
+h2{
+    margin-top: 0px;
+}
+#goldCounter{
+    vertical-align: top;
+    padding: 20px;
+}
+#activities{
+    display: block;
+    margin-left: 198.5px;
+    overflow-y: scroll;
+}
+#actHead{
+    display: inline-block;
+    margin-left: 198.5px;
+}

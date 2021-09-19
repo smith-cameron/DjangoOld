@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Verification</title>
+    {%load static%}
+    <link rel="stylesheet" href="{% static 'css/deleteVerification.css' %}"">
+</head>
+<body>
+    <div id="wrapper">
+        <h1>Are you sure you want to delete the following course?</h1>
+        <div id="coursedisplay">
+            <p>Name:{{selectedCourse.name}}</p>
+            <p id="descriptiondisplay">Description: {{selectedCourse.description.description}}</p>
+        </div>
+        <div id="footer">
+            <a id="templatelink" href="/courses">NO! Nevermind</a> | <a id="templatelink" href="/course/delete/{{selectedCourse.id}}">Yes! I want to delete this</a>
+        </div>
+    </div>
+</body>
+</html>

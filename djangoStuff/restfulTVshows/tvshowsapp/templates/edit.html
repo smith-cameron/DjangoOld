@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDIT SHOW</title>
+    {%load static%}
+    <link rel="stylesheet" href={% static "css/style_edit.css"%}>
+</head>
+<body>
+    <div id="wrapper">
+        <h1>EDIT SHOW {{selectedshow.id}}</h1>
+        <a id="templatelink" href="/shows">Go Back</a>
+        <div id="editform">
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="" method="post">
+                {%csrf_token%}
+                <p id="title">Title</p>
+                <input type="text" name="titleinput" id="titleinput" value="{{selectedshow.title}}">
+                <p id="network">Network</p>
+                <p id="releasedate">Release Date</p>
+                <input type="text" name="networkinput" id="networkinput" value="{{selectedshow.network}}">
+                <input type="date" name="releasedate" id="releasedate" value="{{selectedshow.release_date|date:'Y-m-d'}}">
+                <p id="description">Description</p>
+                <textarea name="description" id="descriptioninput" cols="30" rows="10">{{selectedshow.description}}</textarea>
+                <button type="submit">UPDATE</button>
+            </form>
+            <a id="templatelink2" href="/shows/{{selectedshow.id}}/read">Go to Show</a>
+        </div>
+    </div>
+</body>
+</html>

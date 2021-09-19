@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users Assignment</title>
+    {% load static %}
+    <link rel="stylesheet" href={% static "css/style.css" %}>
+</head>
+<body>
+    <div id=wrapper>
+        <h1>All the Users</h1>
+        <table id=entered_users>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>Remove</th>
+            </tr>
+            {%for user in all_users%}
+            <tr>
+                <td>{{user.id}}</td>
+                <td>{{user.first_name}} {{user.last_name}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.age}}</td>
+                <td><a href="/delete/{{user.id}}"> <button>Delete</button></a></td>
+            </tr>
+            {%endfor%}
+        </table>
+        <form action="add_user" method="post">
+            {%csrf_token%}
+            <h2>Add a User</h2>
+            <p>First Name: <input type="text" name="input_first_name" id=""></p>
+            <p>Last Name:  <input type="text" name="input_last_name" id=""></p>
+            <p>Email:      <input type="text" name="input_email" id=""></p>
+            <p>Age:        <input type="text" name="input_age" id=""></p>
+            <a  href="/add_user"> <input id=submitbutton type="submit" value="Submit"></a>
+        </form>
+    </div>
+</body>
+</html>

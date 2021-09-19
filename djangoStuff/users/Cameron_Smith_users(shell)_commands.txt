@@ -1,0 +1,31 @@
+User.objects.create(first_name="Joe",last_name="Shmoe",email="joeShmoe202
+   ...: 0",age="29")
+<User object:JoeShmoe(1)>
+ User.objects.create(first_name="Ben",last_name="Jammin",email="jammin2020
+   ...: ",age="62")
+<User object:BenJammin(2)>
+ User.objects.create(first_name="Timmy",last_name="JimmyJam",email="TJJ202
+   ...: 0",age="32")
+<User object:TimmyJimmyJam(3)>
+
+ User.objects.all()
+<QuerySet [<User object:JoeShmoe(1)>, <User object:BenJammin(2)>, <User object:TimmyJimmyJam(3)>]>
+
+User.objects.last()
+<User object:TimmyJimmyJam(3)>
+
+User.objects.first()
+<User object:JoeShmoe(1)>
+c=User.objects.get(id=3)
+c.last_name = "Pancakes"
+
+c.save()
+c=User.objects.get(id=2)
+
+c.delete()
+(1, {'user_app.User': 1})
+
+User.objects.all().order_by("first_name")
+<QuerySet [<User object:JoeShmoe(1)>, <User object:TimmyPancakes(3)>]>
+User.objects.all().order_by("-first_name")
+<QuerySet [<User object:TimmyPancakes(3)>, <User object:JoeShmoe(1)>]>

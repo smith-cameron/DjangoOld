@@ -1,0 +1,77 @@
+In [1]: from dojo_ninjas_app.models import *
+
+In [2]: Dojos.objects.create(name='dojo1', city='San Diego', state='CA')
+Out[2]: <Dojos: Dojos object (1)>
+
+In [3]: Dojos.objects.create(name='dojo2', city='Los Angeles', state='CA')
+Out[3]: <Dojos: Dojos object (2)>
+
+In [4]: Dojos.objects.create(name='dojo3', city='Burbank', state='CA')
+Out[4]: <Dojos: Dojos object (3)>
+
+In [5]: dojo = Dojos.objects.all()
+
+In [6]: dojo.delete()
+Out[6]: (3, {'dojo_ninjas_app.Ninjas': 0, 'dojo_ninjas_app.Dojos': 3})
+
+In [7]: Dojos.objects.create(name='Python_OnSite', city='San Diego', state='CA')
+   ...:
+Out[7]: <Dojos: Dojos object (4)>
+
+In [8]: Dojos.objects.create(name='Ruby_OnLine', city='Portland', state='OR')
+Out[8]: <Dojos: Dojos object (5)>
+
+In [9]: Dojos.objects.create(name='MERN_OnLine', city='Dallas', state='TX')
+Out[9]: <Dojos: Dojos object (6)>
+
+In [10]: Ninjas.objects.create(dojo=Dojos.objects.get(id=4),first_name='Ben',las
+    ...: t_name='Jammin')
+Out[10]: <Ninjas: Ninjas object (1)>
+
+In [11]: Ninjas.objects.create(dojo=Dojos.objects.get(id=4),first_name='Jane',la
+    ...: st_name='Doe')
+Out[11]: <Ninjas: Ninjas object (2)>
+
+In [12]: Ninjas.objects.create(dojo=Dojos.objects.get(id=4),first_name='John',la
+    ...: st_name='Doe')
+Out[12]: <Ninjas: Ninjas object (3)>
+
+In [13]: Ninjas.objects.create(dojo=Dojos.objects.get(id=5),first_name='Timmy',l
+    ...: ast_name='Pancakes')
+Out[13]: <Ninjas: Ninjas object (4)>
+
+In [14]: Ninjas.objects.create(dojo=Dojos.objects.get(id=5),first_name='Billy',l
+    ...: ast_name='Bob')
+Out[14]: <Ninjas: Ninjas object (5)>
+
+In [15]: Ninjas.objects.create(dojo=Dojos.objects.get(id=5),first_name='Darth',l
+    ...: ast_name='Johnson')
+Out[15]: <Ninjas: Ninjas object (6)>
+
+In [16]: Ninjas.objects.create(dojo=Dojos.objects.get(id=6),first_name='Bart',la
+    ...: st_name='Simpson')
+Out[16]: <Ninjas: Ninjas object (7)>
+
+In [17]: Ninjas.objects.create(dojo=Dojos.objects.get(id=6),first_name='Peter',l
+    ...: ast_name='Griffen')
+Out[17]: <Ninjas: Ninjas object (8)>
+
+In [18]: Ninjas.objects.create(dojo=Dojos.objects.get(id=6),first_name='Rodger',
+    ...: last_name='Dodger')
+Out[18]: <Ninjas: Ninjas object (9)>
+
+In [19]: dojo1 = Dojos.objects.get(id=4)
+
+In [20]: Ninjas.objects.filter(dojo=dojo1)
+Out[20]: <QuerySet [<Ninjas: Ninjas object (1)>, <Ninjas: Ninjas object (2)>, <Ninjas: Ninjas object (3)>]>
+
+In [23]: dojo3 = Dojos.objects.last()
+
+In [24]: Ninjas.objects.filter(dojo=dojo3)
+Out[24]: <QuerySet [<Ninjas: Ninjas object (7)>, <Ninjas: Ninjas object (8)>, <Ninjas: Ninjas object (9)>]>
+
+In [27]: Ninjas.objects.last()
+Out[27]: <Ninjas: Ninjas object (9)>
+
+In [2]: Dojos.objects.create(name='C#_OnSite', city='San Diego', state='CA',desc='')
+Out[2]: <Dojo id:9, name:C#_OnSite, city:San Diego, state:CA, created at:(2020-11-19 18:37:25.736511+00:00)>

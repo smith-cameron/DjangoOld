@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Read (ALL)</title>
+    {%load static%}
+    <link rel="stylesheet" href={% static "css/style_shows.css"%}>
+</head>
+<body>
+    <div id="wrapper">
+        <h1>ALL SHOWS</h1>
+        <table id="allshowstable">
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Network</th>
+                <th>Release Date</th>
+                <th>Actions</th>
+            </tr>
+            {%for show in allShows%}
+            <tr>
+                <td>{{show.id}}</td>
+                <td>{{show.title}}</td>
+                <td>{{show.network}}</td>
+                <td>{{show.release_date}}</td>
+                <td><a class="tableaction" href="shows/{{show.id}}/read">Show</a> | <a class="tableaction" href="shows/{{show.id}}/edit">Edit</a> | <a class="tableaction" href="/delete/{{show.id}}">Delete</a></td>
+            </tr>
+            {%endfor%}
+        </table>
+        <a id="templatelink" href="/shows/new">Add a New Show</a>
+    </div>
+</body>
+</html>

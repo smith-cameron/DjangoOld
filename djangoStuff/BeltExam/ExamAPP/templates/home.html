@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quoteable Quotes</title>
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'style_home.css'%}">
+</head>
+<body>
+    <div id="wrapper">
+        <div id="header">
+        <h1 id="headFG">Welcome, {{user.first_name}}!</h1>
+        <a href="/logout" id="templatelink">Log Out</a>
+        </div>
+        <div id="addQuote">
+            <h2>Contribute a Quote</h2>
+            <div id="messages">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+                <form action="/addQuote" id="addForm" method="POST">
+                {% csrf_token %}
+                Quoted By:<input type="text" name="quoteBy">
+                Message:<textarea name="quotetext" cols="20" rows="5"></textarea>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        <div id="quotes">
+            <h2>Quoteable Quotes</h2>
+            {%for quote in allQuotes%}
+                {%if quote not in likedQuotes%}
+                    <p name="quoteTextdisplay" cols="70" rows="10">{{quote.quote_by}}: {{quote.quote_text}}</p>
+                    <p>Posted By: <a href="/userInfo/{{quote.uploaded_by.id}}">{{quote.uploaded_by.first_name}}</a></p>
+                    {%if quote.uploaded_by.id == user.id%}
+                        <a href="/delete/{{quote.id}}">Delete</a> |
+                        <a href="/editQuote/{{quote.id}}">Edit</a>
+                    {%endif%}
+                    {%if user != quote.users_who_like.all%}
+                        <a href="/likeQuote/{{quote.id}}"><input type="submit" value="Add to Favorites"></a>
+                    {%endif%}
+                {%endif%}
+            {%endfor%}
+        </div>
+        <div id="favorites">
+            <h2>Your Favorites</h2>
+            {%for quote in likedQuotes%}
+                {%if quote in likedQuotes%}
+                    <p name="quoteTextdisplay" cols="70" rows="10">{{quote.quote_by}}: {{quote.quote_text}}</p>
+                    <p>Posted By: <a href="/userInfo/{{quote.uploaded_by.id}}">{{quote.uploaded_by.first_name}}</a></p>
+                    {%if quote.uploaded_by.id == user.id%}
+                        <a href="/delete/{{quote.id}}">Delete</a> |
+                        <a href="/editQuote/{{quote.id}}">Edit</a>
+                    {%endif%}
+                    {%if user != quote.users_who_like.all%}
+                    <a href="/unlikeQuote/{{quote.id}}"><input type="submit" value="Remove from Favorites"></a>
+                    {%endif%}
+                {%endif%}
+            {%endfor%}
+        </div>
+    </div>
+</body>
+</html>

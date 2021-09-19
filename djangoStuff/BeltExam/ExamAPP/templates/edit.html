@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Quote{{selectedQuote.id}}</title>
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'style_home.css'%}">
+</head>
+<body>
+    <div id="wrapper">
+        <div id="header">
+            <a href="/home" id="templatelink" >Dashboard</a> |
+            <a href="/logout" id="templatelink">Log Out</a>
+        </div>
+        <div id="editQuote">
+            <h2>Edit Quote</h2>
+            <div id="messages">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+                <form action="/editQuote/{{selectedQuote.id}}" id="editForm" method="POST">
+                {% csrf_token %}
+                Quoted By:<input type="text" name="quoteBy" value="{{selectedQuote.quote_by}}">
+                Message:<textarea name="quotetext" id="" cols="20" rows="5" >{{selectedQuote.quote_text}}</textarea>
+                <input type="submit" value="EDIT">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

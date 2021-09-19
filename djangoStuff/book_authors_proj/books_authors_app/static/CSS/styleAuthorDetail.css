@@ -1,0 +1,39 @@
+#wrapper{
+    width: 970px;
+    height: fit-content;
+    margin: 0px auto;
+    outline-style: dashed;
+    outline-width: 1px;
+    outline-color: red;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+h1{
+    text-align: center;
+}
+#input{
+    display: inline-block;
+    vertical-align: top;
+    font-size: x-large;
+    margin-left: 200px;
+}
+#allData{
+    display: inline-block;
+    margin-left: 200px;
+    font-size: x-large;
+}
+td{
+    padding: 10px 0px;
+}
+#titleI{
+    margin-left: 70px;
+}
+a{
+    padding-left: 20px;
+}
+#submitB{
+    font-size: large;
+    margin-left: 200px;
+}
+#addAuthors{
+    font-size: large;
+}

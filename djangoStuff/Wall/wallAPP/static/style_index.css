@@ -1,0 +1,26 @@
+#wrapper{
+    width: 1000px;
+    height: fit-content;
+    margin: 0px auto;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: rgb(27,68,34);
+    background: linear-gradient(0deg, rgba(27,68,34,1) 0%, rgba(24,149,27,1) 100%);
+    padding-bottom: 25px;
+}
+.form{
+    width: 495px;
+    display: inline-block;
+    margin: 0px;
+    vertical-align: top;
+    text-align: center;
+}
+.headFG{
+    margin-bottom: 0px;
+}
+.headBG{
+    color: #1b4422;
+    margin: 0px;
+}
+.messages{
+    color: red;
+}

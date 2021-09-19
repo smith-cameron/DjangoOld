@@ -1,0 +1,47 @@
+#wrapper{
+    width: 1000px;
+    height: fit-content;
+    margin: 0px auto;
+    font-family: Arial, Helvetica, sans-serif;
+    background: rgb(46,85,143);
+    background: linear-gradient(0deg, rgba(46,85,143,1) 19%, rgba(30,126,230,1) 100%);
+    padding-bottom: 25px;
+}
+h1{
+    display: block;
+    padding-top: 25px;
+    text-align: center;
+}
+#templatelink{
+    display: inline-block;
+    color: yellow;
+    margin: 20px 0px 10px 250px;
+    vertical-align: top;
+    font-size: large;
+}
+#commentdiv{
+    width: 500px;
+    margin: 0px auto;
+    font-size: large;
+}
+#commentdisplay{
+    margin: 0px;
+}
+#commentTextdisplay{
+    display: inline-block;
+    margin: 0px;
+    height: 75px;
+    width: 600px;
+    color: aliceblue;
+}
+#commentinput{
+    font-family: Arial, Helvetica, sans-serif;
+    height: 75px;
+    width: 600px;
+    overflow-y: scroll;
+}
+#comments{
+    display: inline-block;
+    margin: 0px auto;
+    width: 600px;
+}

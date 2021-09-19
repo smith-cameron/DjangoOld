@@ -1,0 +1,45 @@
+#wrapper{
+    width: 1000px;
+    height: fit-content;
+    margin: 0px auto;
+    font-family: Arial, Helvetica, sans-serif;
+    background: rgb(46,85,143);
+    background: linear-gradient(0deg, rgba(46,85,143,1) 19%, rgba(30,126,230,1) 100%);
+    padding-bottom: 25px;
+}
+h2{
+    display: inline-block;
+    margin: 25px 0px 20px 404.297px;
+}
+#createform{
+    width: 500px;
+    margin: 0px auto;
+    padding-left: 150px;
+}
+#courseinput{
+    display: inline-block;
+    width: 350px;
+    margin-right: 150px;
+}
+#descriptioninput{
+    width: 350px;
+    height: 100px;
+    overflow-x: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+}
+button{
+    display: block;
+    padding: 3px 8px;
+    margin: 10px 0px 0px 0px ;
+}
+#courseTable{
+    text-align: center;
+    width: 950px;
+    margin: 0px auto;
+    border-style: solid;
+    border-width: 3px;
+    border-color: black;
+}
+.tableaction{
+    color: aliceblue;
+}

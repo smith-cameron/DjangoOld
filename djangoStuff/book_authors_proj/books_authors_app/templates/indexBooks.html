@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOKS</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
+</head>
+<body>
+    <div id="wrapper">
+        <h1>ADD a BOOK</h1>
+        <form action="/addBook" method="post" id="input">
+            {% csrf_token %}
+            <p>Title:<input type="text" name="titleI" id="titleI"></p>
+            <p>Description:<input type="text" name="descI" id="descI"></p>
+            <a href="/addBook"><button type="submit" id="submitB">ADD</button></a>
+        </form>
+        <table id="allData">
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Action</th>
+            </tr>
+            {%for book in allBooks%}
+            <tr>
+                <td>{{ book.id }}</td>
+                <td>{{ book.title }}</td>
+                <td><a href="/bookDetails/{{book.id}}">View</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

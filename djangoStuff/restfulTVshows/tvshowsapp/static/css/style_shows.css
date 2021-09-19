@@ -1,0 +1,29 @@
+#wrapper{
+    width: 1000px;
+    height: fit-content;
+    margin: 0px auto;
+    font-family: Arial, Helvetica, sans-serif;
+    background: rgb(52,86,129);
+    background: linear-gradient(0deg, rgba(52,86,129,1) 0%, rgba(85,137,196,1) 100%);
+}
+h1{
+    display: inline-block;
+    margin: 25px 0px 20px 404.297px;
+}
+#allshowstable{
+    text-align: center;
+    width: 950px;
+    margin: 0px 19px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: black;
+}
+.tableaction{
+    color: aliceblue;
+}
+#templatelink{
+    display: inline-block;
+    color: aliceblue;
+    margin: 30px 10px 30px 19px;
+    font-size: large;
+}

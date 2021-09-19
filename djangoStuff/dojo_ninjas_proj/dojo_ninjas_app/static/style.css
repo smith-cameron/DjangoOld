@@ -1,0 +1,32 @@
+#wrapper{
+    width: 1000px;
+    height: fit-content;
+    margin: 0px auto;
+    outline-style: dashed;
+    outline-width: 1px;
+    outline-color: red;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+#formDojo{
+    display: inline-block;
+    margin-left: 170px;
+    margin-bottom: 40px;
+}
+#formNinja{
+    display: inline-block;
+    margin-left: 170px;
+    margin-bottom: 55px;
+    vertical-align: top ;
+}
+#dojo_list{
+    display: inline-block;
+    margin-left: 125px;
+    border-top-style: solid;
+    border-top-width: 1px;
+    width: 750px;
+    padding-left: 290px;
+    width: 525px;
+}
+.dojo_list_head{
+    width: 400px;
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comments</title>
+    {%load static%}
+    <link rel="stylesheet" href="{% static 'css/comments.css'%}"">
+</head>
+<body>
+    <div id="wrapper">
+        <h1>{{selectedCourse.name}}</h1>
+        <form action="" method="post" id="commentdiv">
+            {%csrf_token%}
+            <p>Comment:</p>
+            <textarea name="commentinput" id="commentinput" cols="30" rows="10"></textarea>
+            <button type="submit">ADD</button>
+        </form>
+        <a id="templatelink" href="/courses">Go Back</a>
+        <div id="commentdiv">
+            {%for comment in allComments%}
+            <p id="commentdisplay">Comment {{comment.created_at}}</p>
+            <p name="commentTextdisplay" id="commentTextdisplay" cols="30" rows="10">{{comment.commentbody}}</p>
+            {%endfor%}
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+#wrapper{
+    width: 1000px;
+    height: fit-content;
+    margin: 0px auto;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: rgb(27,68,34);
+    background: linear-gradient(0deg, rgba(27,68,34,1) 0%, rgba(24,149,27,1) 100%);
+    padding: 20px 0px;
+}
+#headFG{
+    text-align: center;
+    margin-top: 0px;
+}
+#headBG{
+    text-align: center;
+    color: rgba(27,68,34,1);
+    margin: 20px;
+}
+#templatelink{
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    margin-left: 468.5px;
+}

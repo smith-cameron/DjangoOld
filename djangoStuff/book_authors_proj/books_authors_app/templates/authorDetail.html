@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Author Detail</title>
+    {% load static %}
+    <link rel="stylesheet" href={% static "CSS/styleAuthorDetail.css"%}>
+</head>
+<body>
+    <div id="wrapper">
+        <h1>{{selectedAuthor.first_name}} {{selectedAuthor.last_name}}</h1>
+        <div id="input">
+            <p>ID: {{selectedAuthor.id}}</p>
+            <p>Notes: {{selectedBook.notes}}</p>
+            <p>Books:</p>
+            {% for book in selectedAuthor.books.all %}
+            <ul> {{book.id}} {{book.title}}</ul>
+            {% endfor %}
+            <form action="/additionalBook" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="authorID" value="{{selectedAuthor.id}}">
+                <select name="addBook" id="addBook">
+                    {% for book in otherBooks %}
+                        {% if book not in selectedAuthor.books.all %}
+                            <option value="{{book.id}}"> {{book.id}} {{book.title}}</option>
+                        {% else %}
+                            {% endif %}
+                    {% endfor %}
+                </select>
+                <button type="submit">ADD Book</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

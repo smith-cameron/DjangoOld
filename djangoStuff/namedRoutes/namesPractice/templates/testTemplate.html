@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Inside your app's index.html file -->
+<a href="/target/this_app/new"></a>
+<!-- is the equivalent of:  -->
+<a href="{% url 'my_new' %}"></a>
+<!-- This form's action attribute -->
+<form class="" action="/target/this_app/5/delete" method="post">
+    <input type="submit" value="Submit">
+</form>
+<!-- is the equivalent of: -->
+<form class="" action="{% url 'my_delete' id=5 %}" method="post">
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>

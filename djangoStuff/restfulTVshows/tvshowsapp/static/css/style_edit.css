@@ -1,0 +1,67 @@
+#wrapper{
+    width: 1000px;
+    height: fit-content;
+    margin: 0px auto;
+    font-family: Arial, Helvetica, sans-serif;
+    background: rgb(52,86,129);
+    background: linear-gradient(0deg, rgba(52,86,129,1) 0%, rgba(85,137,196,1) 100%);
+    padding-bottom: 15px;
+}
+h1{
+    display: inline-block;
+    margin: 25px 0px 20px 404.297px;
+}
+#templatelink{
+    display: inline-block;
+    color: aliceblue;
+    margin: 20px 0px 0px 250px;
+    vertical-align: top;
+    font-size: large;
+}
+#editform{
+    width: 500px;
+    margin: 0px auto;
+    padding-left: 150px;
+}
+#title{
+    display: inline-block;
+    margin-right: 450px;
+}
+#titleinput{
+    display: inline-block;
+    width: 350px;
+    margin-right: 150px;
+}
+#network{
+    display: inline-block;
+    margin-right: 140px;
+}
+#networkinput{
+    display: inline-block;
+    margin-right: 45px;
+}
+#releasedate{
+    display: inline-block;
+}
+#descriptioninput{
+    width: 350px;
+    height: 100px;
+    overflow-x: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+}
+button{
+    display: block;
+    padding: 3px 8px;
+    margin: 10px 0px 0px 140px;
+}
+#templatelink2{
+    display: inline-block;
+    color: aliceblue;
+    margin: 15px 0px 0px 136px;
+    vertical-align: top;
+    font-size: large;
+}
+.messages{
+    color: red;
+}

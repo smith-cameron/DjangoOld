@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quoteable Quotes</title>
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'style_user.css'%}">
+</head>
+<body>
+    <div id="wrapper">
+        <div id="header">
+            <a href="/home" id="templatelink" >Dashboard</a> |
+            <a href="/logout" id="templatelink">Log Out</a>
+        </div>
+        <h3>Posted By: {{user.first_name}}</h3>
+        <p>Count: {{myQuotes.count}}</p>
+        {%for quote in user.quotes_uploaded.all%}
+        <p name="quoteTextdisplay" cols="70" rows="10">{{quote.quote_by}}: {{quote.quote_text}}</p>
+        {%endfor%}
+    </div>
+</body>
+</html>

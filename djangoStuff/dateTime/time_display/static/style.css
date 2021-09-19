@@ -1,0 +1,28 @@
+#wrapper{
+    margin: 0px auto;
+    outline-style: dashed;
+    outline-color: red;
+    outline-width: 1px;
+    width: 970px;
+    height: 700px;
+}
+h1{
+    display: inline-block;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    margin: 30px 211.25px 30px 211.25px;
+    padding: 20px;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 10px;
+}
+span{
+    display: inline-block;
+    font-family: Verdana, Geneva, Tahoma, sans-serif ;
+    font-weight: bold;
+    margin: 30px 364px 30px 364px;
+    padding: 20px;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 10px;
+}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojo Survey</title>
+    {%load static%}
+    <link rel="stylesheet" href={% static "style.css"%}>
+</head>
+<body>
+    <div id=wrapper>
+        <div id=form>
+            {% csrf_token %}
+            <h2>Submitted Info</h2>
+            <p class='P'>Name:{{request.session.username}}</p>
+            <p class='P'>Dojo Location:{{request.session.location}}</p>
+            <p class='P'>Favorite Language:{{request.session.language}}</p>
+            <p class='P'>Comment:{{request.session.textarea}}</p>
+        <a href="/reset"><input id=submitButton type="reset" href="/reset" value="GO BACK"></a>
+        </div>
+    </div>
+</body>
+</html>

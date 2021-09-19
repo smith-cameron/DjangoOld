@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Word Generator</title>
+</head>
+<body>
+    <h1>Random Word (Attempt #:{{request.session.count}})</h1>
+    <form method='POST' action="generate">
+        {% csrf_token %}
+        <h2>{{request.session.unique_id}}</h2>
+        <button type="submit">Generate</button>
+    </form>
+    <a href="/reset"><button>Reset</button></a>
+</body>
+</html>

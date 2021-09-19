@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+    {%load static%}
+    <link rel="stylesheet" href="{% static 'css/courses.css' %}">
+</head>
+<body>
+    <div id="wrapper">
+        <h2>ADD A COURSE:</h2>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <form action="" method="post" id="createform">
+            {%csrf_token%}
+            <p>Name:</p>
+            <input type="text" name="coursename" id="courseinput">
+            <p>Description:</p>
+            <textarea name="description" id="descriptioninput" cols="30" rows="10"></textarea>
+            <button type="submit">ADD</button>
+        </form>
+        <h2>COURSES:</h2>
+        <table id="courseTable">
+            <tr>
+                <th>Course Name</th>
+                <th>Description</th>
+                <th>Date Added</th>
+                <th>Actions</th>
+            </tr>
+            {%for course in allCourses%}
+            <tr>
+                <td>{{course.name}}</td>
+                <td>{{course.description.description}}</td>
+                <td>{{course.created_at}}</td>
+                <td><a href="/course/verify/{{course.id}}" class="tableaction">REMOVE</a> | <a href="course/comments/{{course.id}}" class="tableaction">COMMENT</a></td>
+            </tr>
+            {%endfor%}
+        </table>
+    </div>
+</body>
+</html>
