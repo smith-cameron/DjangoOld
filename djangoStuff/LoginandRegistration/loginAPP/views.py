@@ -35,8 +35,8 @@ def register(request):
 
 def login(request):
     if request.method == 'POST':
-        users = User.objects.filter(email=request.POST['emaillogin'])
-        if not users:
+        user = User.objects.filter(email=request.POST['emaillogin'])
+        if not user:
             print('login email error')
             messages.error(request, "Email not in data base.")
             return redirect('/home')
@@ -46,8 +46,8 @@ def login(request):
             for key, value in errors.items():
                 messages.error(request, value)
             return redirect('/home')
-        if users:
-            logged_user = users[0]
+        if user:
+            logged_user = user[0]
         if bcrypt.checkpw(request.POST['passwordlogin'].encode(), logged_user.password.encode()):
             request.session['user'] = logged_user.id
             return redirect('/complete')
