@@ -20,4 +20,4 @@ class BankAccount:
     def transfer(self, otherUser, amount):
         self.accountBalance -=amount
         otherUser.account.accountBalance += amount
-        return (self)
+        return (self) 
