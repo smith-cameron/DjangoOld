@@ -23,11 +23,6 @@ class Migration(migrations.Migration):
         ),
         migrations.RenameField(
             model_name='user',
-            old_name='date_of_birth',
-            new_name='dob',
-        ),
-        migrations.RenameField(
-            model_name='user',
             old_name='first_name',
             new_name='firstName',
         ),

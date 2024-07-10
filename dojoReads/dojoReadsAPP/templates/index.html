@@ -1,17 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {%load static%}
-    <title>{{currentUser.firstName}} {{currentUser.lastName}}</title>
-</head>
-<body>
-    <div id="header">
-        <a id ="logOutLink" href="/logout">Logout</a>
-
-    </div>
-    <h1> Welcome {{currentUser.firstName}} {{currentUser.lastName}} to your Book Reviews!</h1>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Login & Registration</title>
+        {% load static %}
+        <link rel="shortcut icon" href="{% static 'Bookmark.ico' %}">
+        {% load bootstrap5 %}
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+        <link rel="stylesheet" href="{% static 'css/style.css'%}" />
+    </head>
+    <body>
+        <div id="wrapper">
+            <div id="body">
+                <div class="displayCol">
+                    {% if display_form == 'reg' %}
+                        <div class="colHead">
+                            <h2>Register <a href="/users/login">Log In</a></h2>
+                            <!-- <h3>...if you are not already a member.</h3> -->
+                        </div>
+                        <form action="/register" method="post" id="regform">
+                            {% csrf_token %}
+                            <input class="form-control mb-3" type="text" name="first_name" value="{{form_info.firstname}}" placeholder="First Name"/>
+                            <input class="form-control mb-3" type="text" name="last_name" value="{{form_info.lastname}}" placeholder="Last Name"/>
+                            <input class="form-control mb-3" type="date" name="dob" value="{{form_info.dob}}" placeholder="Date Of Birth"/>
+                            <input class="form-control mb-3" type="email" name="email" value="{{form_info.email}}" placeholder="Email"/>
+                            <input class="form-control mb-3" type="password" name="password" placeholder="Password"/>
+                            <input class="form-control mb-3" type="password" name="confirmpw" placeholder="Retype Password"/>
+                            <input class="btn btn-success form-control mb-3" type="submit" value="SUBMIT" />
+                        </form>
+                    {% else %}
+                        <div class="colHead">
+                            <h2><a href="/">Register</a> Log In</h2>
+                            <!-- <h3>...if you have previously registered.</h3> -->
+                        </div>
+                        <form action="/login" method="post" id="loginform">
+                            {% csrf_token %}
+                            <input class="form-control mb-3" type="email" name="login_email" value="{{form_info.login_email}}" placeholder="Email"/>
+                                <input class="form-control mb-3" type="password" name="password" placeholder="Password"/>
+                                <input class="btn btn-success form-control mb-3" type="submit" value="SUBMIT" />
+                            </form>
+                    {% endif %}
+                </div>
+                <div class="displayCol">
+                    {% if messages %}
+                        <ul class="messages">
+                        {% for msg in messages %}
+                            <li>
+                                <div class="alert alert-{{msg.level_tag}}" role="alert" >{{msg.message}}</div> 
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

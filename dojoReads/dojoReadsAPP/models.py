@@ -2,46 +2,51 @@ from django.db import models
 from datetime import datetime
 import re
 import bcrypt
+email_regex = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 class UserManager(models.Manager):
+
     def reg_validations(self, postData):
-        valid_email_check = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
         errors = {}
-        if postData['firstname'] == '':
-            errors['firstname'] = 'First Name is required'
-        elif len(postData['firstname']) < 2:
-            errors['firstname'] = "First name must be at leased 2 characters."
-        if postData['lastname'] == '':
-            errors['lastname'] = 'Last Name is required'
-        elif len(postData['lastname']) < 2:
-            errors['lastname'] = "Last name must be at leased 2 characters."
-        if postData['password'] == '':
-            errors['password'] = 'Password is required'
-        elif len(postData['password']) < 8:
-            errors['password'] = "Password must be at leased 8 characters."
-        if postData['email'] == '':
-            errors['email'] = 'Email is required'
-        elif not valid_email_check.match(postData['email']):
-            errors['email'] = ("Invalid email address!")
-        if postData['confirmpw'] == '':
-            errors['confirmpw'] = 'Password confirmation is required'
-        elif len(postData['confirmpw']) < 8:
-            errors['confirmpw'] = "Password must be at leased 8 characters."
-        if postData['password'] != postData['confirmpw']:
-            errors['password'] = "Passwords do not match."
-        if postData['dob'] == '':
+        if not postData['first_name'].strip():
+            errors['first_name'] = 'First Name is required'
+        elif len(postData['first_name']) < 2:
+            errors['first_name'] = "First name must be at leased 2 characters"
+        if not postData['last_name'].strip():
+            errors['last_name'] = 'Last Name is required'
+        elif len(postData['last_name']) < 2:
+            errors['last_name'] = "Last name must be at leased 2 characters"
+        if not postData['dob'].strip():
             errors['dob'] = 'Date of birth is required'
         elif datetime.strptime(postData['dob'], '%Y-%m-%d') > datetime.now():
             errors['dob'] = 'Date of birth should be before todays date'
+        if not postData['email'].strip():
+            errors['email'] = 'Email is required'
+        elif not email_regex.match(postData['email']):
+            errors['email'] = "Invalid email address"
+        elif len(User.objects.filter(email = postData['email']) ) > 0:
+            print('email error')
+            errors['email'] = "Email already exists. Please log in"
+        if not postData['password'].strip():
+            errors['password'] = 'Password is required'
+        elif len(postData['password']) < 8:
+            errors['password'] = "Password must be at leased 8 characters"
+        elif postData['password'] != postData['confirmpw']:
+            errors['password'] = "Passwords do not match"
         return errors
 
     def login_validations(self, postData):
-        valid_email_check = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
         errors = {}
-        if not valid_email_check.match(postData['emaillogin']):
-            errors['emaillogin'] = ("Invalid email address!")
-        if len(postData['passwordlogin']) < 8:
-            errors['passwordlogin'] = "Password must be at leased 8 characters."
+        if not postData['login_email'].strip():
+            errors['login_email'] = 'Email is required'
+        elif not email_regex.match(postData['login_email']):
+            errors['login_email'] = "Invalid email address"
+        elif not User.objects.filter(email = postData['login_email']):
+            errors['login_email'] = ""
+        if not postData['password'].strip():
+            errors['password'] = 'Password is required'
+        if len(postData['password']) < 8:
+            errors['password'] = "Password must be at leased 8 characters"
         return errors
 
 class User(models.Model):
@@ -54,6 +59,15 @@ class User(models.Model):
     updated_at = models.DateTimeField(auto_now = True)
     objects = UserManager()
 
+    def __repr__(self):
+        return f"""
+        ID: {self.id}
+        first_name: {self.first_name}
+        last_name: {self.last_name}
+        created_at: {self.created_at}
+        updated_at: {self.updated_at}
+        """
+
 class Book(models.Model):
     bookCreator = models.ForeignKey(User, related_name = 'bookUser', on_delete = models.CASCADE)
     title = models.CharField(max_length = 255)
@@ -63,7 +77,7 @@ class Book(models.Model):
 
 class Review(models.Model):
     reviewCreator = models.ForeignKey(User, related_name = 'reviewUser', on_delete = models.CASCADE)
-    reviewBook = models.ForeignKey(Book, related_name = 'reviewBook', on_delete = models.CASCADE)
+    reviewBook = models.ForeignKey(Book, related_name = 'reviewBook', on_delete = models.CASCADE, null=True)
     reviewBody = models.TextField()
     rating = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add = True)

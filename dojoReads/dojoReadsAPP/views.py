@@ -4,61 +4,77 @@ from .models import *
 import bcrypt
 
 def root(request):
-    return render(request, 'loginReg.html')
-    # You could also reroute here to another views method
+    request.session['display_form'] = 'reg'
+    return redirect('/users')
+
+def login_form(request):
+    request.session['display_form'] = 'login'
+    return redirect('/users')
+
+def users_render(request):
+    form_info = ""
+    if 'submission' in request.session:
+        form_info = request.session['submission']
+    context = {
+        'form_info' : form_info,
+        'display_form': request.session['display_form']
+    }
+    return render(request, 'index.html', context)
 
 def register(request):
+    errors = {}
     if request.method == 'POST':
-        email_check = User.objects.filter(email = request.POST['email'])
-        if len(email_check) > 0:
-            print('email error')
-            messages.error(request, "Email already exists. Please log in.")
-            return redirect('/home')
+        filtered_data = {key: value for key, value in request.POST.items() if key != 'password' or key != 'confirmpw'}
+        request.session['submission'] = filtered_data
         errors = User.objects.reg_validations(request.POST)
-        if len(errors) > 0:
-            print('validation error')
-            for key, value in errors.items():
-                messages.error(request, value)
-            return redirect('/home')
-        else:
-            password = request.POST['password']
-            pw_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
+        if len(errors) < 1:
             newUser = User.objects.create(
-                firstName = request.POST['firstname'],
-                lastName = request.POST['lastname'],
+                first_name = request.POST['first_name'],
+                last_name = request.POST['last_name'],
                 dob = request.POST['dob'],
                 email = request.POST['email'],
-                password = pw_hash
+                password = bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt()).decode()
             )
-            request.session['userID'] = newUser.id
-            return redirect('/complete')
+            request.session['user_id'] = newUser.id
+            request.session.pop('submission', None)
+            request.session.pop('display_form', None)
+            return redirect('/home')
+    messages.add_message(request, messages.INFO, 'Invalid Credentials')
+    # messages.error(request, "Invalid Credentials")
+    if errors:
+        for value in errors.values():
+            messages.add_message(request, messages.WARNING, value)
+            # messages.error(request, value)
     return redirect('/')
 
 def login(request):
+    errors = {}
     if request.method == 'POST':
-        users = User.objects.filter(email = request.POST['emaillogin'])
-        if not users:
-            print('login email error')
-            messages.error(request, "Email not in data base.")
-            return redirect('/')
+        filtered_data = {key: value for key, value in request.POST.items() if key != 'password'}
+        request.session['submission'] = filtered_data
         errors = User.objects.login_validations(request.POST)
-        if len(errors) > 0:
-            print('login validation error')
-            for key, value in errors.items():
-                messages.error(request, value)
-            return redirect('/')
-        if users:
-            currentUser = users[0]
-        if bcrypt.checkpw(request.POST['passwordlogin'].encode(), currentUser.password.encode()):
-            request.session['userID'] = currentUser.id
-            return redirect('/complete')
-    return redirect('/')
+        if len(errors) < 1:
+            currentUser = User.objects.filter(email = request.POST['login_email'])[0]
+            if bcrypt.checkpw(request.POST['password'].encode(), currentUser.password.encode()):
+                request.session['user_id'] = currentUser.id
+                request.session.pop('submission', None)
+                request.session.pop('display_form', None)
+                return redirect('/home')
+    messages.add_message(request, messages.INFO, 'Invalid Credentials')
+    if errors:
+        for value in errors.values():
+            messages.add_message(request, messages.WARNING, value)
+    return redirect('/users/login')
 
 def landing(request):
-    context = {
-        'currentUser': User.objects.get(id=request.session['userID'])
-    }
-    return render(request, 'index.html', context)
+    if 'user_id' in request.session:
+        this_user = User.objects.get(id = request.session['user_id'])
+        print(this_user)
+        context = {
+            'currentUser': User.objects.get(id = request.session['user_id'])
+        }
+        return render(request, 'landing.html', context)
+    return redirect('/logout')
 
 def logout(request):
     request.session.flush()
